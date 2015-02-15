@@ -90,7 +90,10 @@ function sha_uniq() {
 	
 }
 
-
+function location_href($str, $url) {
+	echo "<script>alert('".$str."');location.href='$url';</script>";
+	exit();
+}
 
 
 

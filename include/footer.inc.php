@@ -3,6 +3,7 @@
 if(!defined('IN_CF')) {//没有授权，直接退出
 	exit("Access Defined");
 }
+mysql_close();//加载到页脚时关闭数据库
 ?>
 
 

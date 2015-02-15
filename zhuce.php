@@ -21,7 +21,16 @@ if ($_GET['action'] == 'zhuce.php') {
 	$_clean['sex'] = ck_sex_face($_POST['sex']);
 	$_clean['face'] = ck_sex_face($_POST['face']);
 	$_clean['email'] = ck_email($_POST['email'], 2, 40);
-	print_r($_clean);
+	//判断用户名是否重复
+	$query = mysql_query("SELECT g_username FROM g_user WHERE g_username='{$_clean['username']}'");
+	if (mysql_fetch_array($query, MYSQL_ASSOC)){
+		alert_back('此用户名已存在！');
+	}
+	
+	//" "里面直接放变量是可以的，但放数组应该使用{}将内容包起来  如：{$_clean['username]}
+	mysql_query("INSERT INTO g_user (g_uniqid, g_active, g_username, g_password, g_question, g_answer, g_email,	g_sex, g_face, g_reg_time,	g_last, g_ip) VALUES ('{$_clean['uniqid']}','{$_clean['active']}','{$_clean['username']}','{$_clean['password']}','{$_clean['question']}','{$_clean['answer']}','{$_clean['email']}','{$_clean['sex']}','{$_clean['face']}',NOW(),NOW(),'{$_SERVER["REMOTE_ADDR"]}')") or die('sql执行失败'.mysql_error());
+	mysql_close();
+	location_href('注册成功', './index.php');
 
 
 }else {//没有提交的话生成一个唯一标识符

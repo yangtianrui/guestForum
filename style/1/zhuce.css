@@ -1,0 +1,62 @@
+#zhuce{
+	width: auto;
+	height: 600px;
+	border: 2px solid #ccc;
+}
+
+#zhuce h2{
+	text-indent: 0;
+	text-align: center;
+}
+
+#zhuce dl{
+	width: 350px;
+	margin: 0 auto;
+}
+
+#zhuce dl dt{
+	text-align: center;
+	padding: 0 10px;
+	font-width: bold;
+}
+#zhuce dl dd{
+	padding: 10px 0;
+}
+#zhuce dl dd .face{
+	padding: 0 0 0 100px;
+	cursor: pointer;
+}
+#zhuce dl dd input.text{
+	width: 200px;
+	height: 20px;
+	background: #fff;
+	border: 1px solid #ccc;
+}
+
+#zhuce dl dd span{
+	font-size: 12px;
+	color: #ccc;
+}
+
+#zhuce dl dd input.submit{
+	width: 40px;
+	height: 29px;
+	margin: 0 50px 0 65px;
+	background: #fff;
+	border: 1px solid #ccc;
+	cursor: pointer;
+}
+#zhuce dl dd input.rcode{
+	width: 60px
+}
+#zhuce dl dd input.submit:hover{
+	background: #ccc;
+}
+
+#rcodeimg{
+	position: relative;
+	top: 4px;
+	cursor: pointer;
+}
+
+

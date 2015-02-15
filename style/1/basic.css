@@ -1,0 +1,115 @@
+*{
+	margin:0;
+	padding:0;
+	font-size: 14px;
+}
+
+
+
+body{
+	background:#fff;
+	margin:0 auto;
+	width:960px;
+}
+
+
+ul li{
+	list-style: none;
+}
+
+h2{
+	text-indent: 10px;
+	line-height: 25px;
+	height: 25px;
+	background: #eee;
+}
+
+
+#header{
+	width: auto;
+	border: 2px solid #ccc;
+	height: 150px;
+	margin: 10px 0;
+}
+
+
+#header h1{
+	font-size: 30px;
+	margin: 10px 0 0 10px;
+	background: url('');
+	width: 500;
+	margin: 50px 0 0 50px;
+	
+	
+}
+/*
+此处插入作为背景的图片
+*/
+
+#header h1 a{
+	display:block;
+	width: 210;
+	height: 39px;
+	
+}
+
+
+#header ul{
+	text-align:right;
+	padding: 20px 50px 0 0;
+
+}
+
+#header ul li{
+	display: inline;
+	
+}
+#header ul li a{
+	color: #333;
+	text-decoration: none;
+}
+
+#header ul li a:hover{
+	color: #f00;
+	text-decoration: underline;
+}
+
+
+#footer{
+	width: auto;
+	height: 60;
+	clear: both;
+	text-align: center;
+	padding: 0 0 10px 0;
+}
+
+
+#footer p{
+	letter-spacing: 1px;
+	padding: 10px 0 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

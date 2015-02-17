@@ -17,7 +17,7 @@ window.onload = function(){
 			alert('用户名长度错误！');
 			$fm.username.value = '';
 			$fm.username.focus();
-			return false;//组织提交行为
+			return false;//组织默认提交行为
 		}		
 		if(/[<>\'\"\ \　]/.test($fm.username.value)){
 			alert('用户名不能包含特殊字符！');

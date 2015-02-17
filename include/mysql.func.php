@@ -69,7 +69,13 @@ function _close() {
 	}
 }
 
-
+/**
+ * 返回影响数据库的条数
+ * @return number
+ */
+function _affected() {
+	return mysql_affected_rows();
+}
 
 
 

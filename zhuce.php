@@ -56,16 +56,16 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 	<form method="post" name="zhuce" action="?action=zhuce.php"><!-- 对提交后页面进行刷新,伪造get方式提交 -->
 		<input type="hidden" name="uniqid" value="<?php echo $_uniq;?>" />
 		<dl>
-		<dt>请认真填写以下信息</dt>
-		<dd>用 户    名：<input type="text" name="username" class="text" /><span>*至少两位</span></dd>
-		<dd>密　　码：<input type="password" name="password" class="text" /><span>*至少六位</span></dd>
-		<dd>确认密码：<input type="password" name="notpassword" class="text" /><span>*</span></dd>
-		<dd>提示问题：<input type="text" name="question" class="text" /></dd>
-		<dd>提示答案：<input type="text" name="answer" class="text" /></dd>
+		<dt>请认真填写以下信息，*项必填。</dt>
+		<dd>用 户    名：<input type="text" name="username" class="text" placeholder="*2~20位数字或字母汉字" /></dd>
+		<dd>密　　码：<input type="password" name="password" class="text" placeholder="*至少六位" /></dd>
+		<dd>确认密码：<input type="password" name="notpassword" class="text" placeholder="*" /></dd>
+		<dd>提示问题：<input type="text" name="question" class="text" placeholder="*至少4位" /></dd>
+		<dd>提示答案：<input type="text" name="answer" class="text" placeholder="*至少4位" /></dd>
 		<dd>性　　别：<input type="radio" name="sex" checked="checked"value=" 男" />男
 					<input type="radio" name="sex" value=" 女" />女</dd>
 		<dd><input type="hidden" name="face" value="face/m01.gif" /><img src="face/m01.gif" alt="头像选择" class="face" id="faceimg"></dd>
-		<dd>电子邮件：<input type="text" name="email" class="text" /></dd>
+		<dd>电子邮件：<input type="text" name="email" class="text" placeholder="*" /></dd>
 		<dd>验 证  码：<input type="text" name="rcode" class="text rcode" /><img src="rcode.php" id="rcodeimg"></dd>
 		<dd><input type="submit" value="注册" class="submit" />
 			<input type="button" value="返回" class="submit" onclick="javascript:location.href='./index.php'" /></dd>

@@ -11,7 +11,7 @@
 	<ul>
 	<li><a href="index.php">首页</a></li>
 	<li><a href="zhuce.php">注册</a></li>
-	<li>登录</li>
+	<li><a href="login.php">登录</a></li>
 	<li>个人中心</li>
 	<li>风格 </li>
 	<li>管理</li>

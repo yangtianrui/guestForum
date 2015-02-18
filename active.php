@@ -5,7 +5,7 @@ header("Content-Type:text/html;charset=utf-8;");
 require  dirname(__FILE__).'/include/common.inc.php';
 //开始激活处理
 if ($_GET['active'] == ''){
-	alert_back('您的账户已经激活！');
+	alert_back('非法操作！');
 }
 if (isset($_GET['action']) && isset($_GET['active']) && ($_GET[action]=='ok')){
 	$_active = mysql_str($_GET['active']);

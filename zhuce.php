@@ -29,9 +29,11 @@ if ($_GET['action'] == 'zhuce.php') {
 	_query("INSERT INTO g_user (g_uniqid, g_active, g_username, g_password, g_question, g_answer, g_email,	g_sex, g_face, g_reg_time,	g_last, g_ip) VALUES ('{$_clean['uniqid']}','{$_clean['active']}','{$_clean['username']}','{$_clean['password']}','{$_clean['question']}','{$_clean['answer']}','{$_clean['email']}','{$_clean['sex']}','{$_clean['face']}',NOW(),NOW(),'{$_SERVER["REMOTE_ADDR"]}')") or die('sql执行失败'.mysql_error());
 	if (_affected() == 1){
 		_close();
+		session_destroy();
 		location_href('注册成功', "./active.php?active=$_clean[active]");
 	}else{
 		_close();
+		session_destroy();
 		location_href('未知错误！请重试', './zhuce.php');
 	}
 

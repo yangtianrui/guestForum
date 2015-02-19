@@ -4,6 +4,7 @@ header("Content-Type:text/html;charset=utf-8");
 define(IN_CF, true);
 define(SCRIPT, login);
 require  dirname(__FILE__).'/include/common.inc.php';
+login_state();
 session_start();
 if ($_GET['action'] == 'login.php'){
 	ck_code($_POST['rcode'], $_SESSION['rcode']);
@@ -17,6 +18,7 @@ if ($_GET['action'] == 'login.php'){
 	if (!!$_row = _fetch_query("SELECT g_username, g_uniqid FROM g_user WHERE g_username='{$_clean['username']}' and g_password='{$_clean['password']}' and g_active=''")){
 		_close();
 		session_destroy();//清除session
+		set_cookies($_row['g_username'], $_row['g_uniqid'], $_clean['time']);
 		header("Location: index.php");
 	}else{
 		_close();

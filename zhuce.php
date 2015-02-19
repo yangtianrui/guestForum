@@ -5,7 +5,9 @@ header("Content-Type:text/html;charset=utf-8");
 define(IN_CF, true);
 define(SCRIPT, zhuce);
 require  dirname(__FILE__).'/include/common.inc.php';
+login_state();
 session_start();
+
 ?>
 <?php 
 if ($_GET['action'] == 'zhuce.php') {

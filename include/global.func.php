@@ -90,14 +90,35 @@ function sha_uniq() {
 	
 }
 
+/**
+ * 跳转到指定的url
+ * @param unknown $str
+ * @param unknown $url
+ */
 function location_href($str, $url) {
 	echo "<script>alert('".$str."');location.href='$url';</script>";
 	exit();
 }
 
 
+/**
+ * 删除登录cookie
+ */
+function _unsetcookie() {
+	setcookie('username','', time()-1);//将值设置为空，时间设置为过去，即可删除cookie
+	setcookie('uniqid', '', time()-1);
+	session_destroy();
+	header("Location:index.php");
+}
 
-
+/**
+ * 对登录用户的权限进行一些限制
+ */
+function login_state() {
+	if (isset($_COOKIE['username'])){
+		alert_back('您已经登录，不能进行此操作！');
+	}
+}
 
 
 

@@ -52,7 +52,24 @@ function ck_time_login($_time) {
 	return mysql_str($_time);
 }
 
+/**
+ * 用于生成cookie，进行登录验证
+ * @param unknown $_username
+ * @param unknown $_uniqid
+ */
+function set_cookies($_username, $_uniqid, $_time) {
 
+	switch ($_time){
+		case '0'://浏览器进程结束是删除
+			setcookie('username', $_username);
+			setcookie('uniqid', $_uniqid);
+			break;
+		case '1'://cookie保留30天
+			setcookie('username', $_username, time()+2592000);
+			setcookie('uniqid', $_uniqid, time()+2592000);
+			break;
+	}
+}
 
 
 

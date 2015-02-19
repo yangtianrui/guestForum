@@ -1,7 +1,6 @@
 <?php 
 /*  注册界面*/
 header("Content-Type:text/html;charset=utf-8");
-
 define(IN_CF, true);
 define(SCRIPT, zhuce);
 require  dirname(__FILE__).'/include/common.inc.php';

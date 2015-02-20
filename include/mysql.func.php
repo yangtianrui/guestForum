@@ -55,7 +55,7 @@ function _query($query) {
 }
 
 /**
- * 从结果集中取出一行作为关联数组
+ * 从结果集中取出一行作为关联数组,只能获取一条数据组
  * @param string $query
  * @return multitype:
  */
@@ -63,6 +63,18 @@ function _fetch_query($query) {
 	return mysql_fetch_array(_query($query), MYSQL_ASSOC);
 }
 
+/**
+ * 返回关联数组的结果集,获取所有数据组
+ * @param unknown $result
+ * @return multitype:
+ */
+function _fetch_list($result) {
+	return mysql_fetch_array($result, MYSQL_ASSOC);
+}
+
+/**
+ * 关闭数据库
+ */
 function _close() {
 	if (!mysql_close()){
 		exit('数据库关闭错误!');

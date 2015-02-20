@@ -19,7 +19,7 @@ if (isset($_GET['action']) && isset($_GET['active']) && ($_GET[action]=='ok')){
 			location_href('未知错误，请重新注册', 'zhuce.php');
 		}
 	}else {
-		alert_back('非法操作！');
+		location_href('激活账户成功', 'login.php');
 	}
 }
 

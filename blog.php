@@ -3,8 +3,12 @@ header("Content-Type:text/html;charset=utf-8");
 define(IN_CF, true);
 define(SCRIPT, 'blog');
 require  dirname(__FILE__).'/include/common.inc.php';
-$result = mysql_query("SELECT g_username,g_face,g_sex FROM g_user ORDER by g_reg_time DESC");
-
+$pagenow = $_GET['page'];
+$pagesize = 20;
+$pagenum = ($pagenow-1)*$pagesize;
+$result = mysql_query("SELECT g_username,g_face,g_sex FROM g_user ORDER by g_reg_time DESC LIMIT $pagenum,$pagesize");
+$page_sum = mysql_num_rows(_query("SELECT g_username FROM g_user"));//返回所有搜索结果的字段数
+$page_abs = ceil($page_sum/$pagesize);
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,6 +37,18 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 		<dd class="flower">给他送花</dd>
 	</dl>
 <?php }?>
+	<div id="pagenum">
+		<ul>
+			<?php for($i=1;$i<$page_abs+1;$i++){
+				if ($pagenow == $i){
+					echo '<li><a href="blog.php?page='.$i.'" class="selected">'.$i.'</a></li>';
+				}else{
+					echo '<li><a href="blog.php?page='.$i.'">'.$i.'</a></li>';
+				}
+
+			}?>
+		</ul>
+	</div>
 </div>
 
 

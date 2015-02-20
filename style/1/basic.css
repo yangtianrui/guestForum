@@ -90,19 +90,46 @@ h2{
 }
 
 
+#pagenum{
+	clear: both;
+	float: right;
+	padding: 10px 0 10px 0;
+	margin: 25px 0 0 0;
+	height: 20px;
+}
 
 
+#pagenum ul{
+	height: 20px;
+	padding: 0 45px 0 0;
+
+}
+
+#pagenum ul li{
+	float: left;
+	text-align: center;
+	padding: 0 10px 0 0;
+	width: 15px;
+	height: 15px;
+
+}
+#pagenum ul li a{
+	border: 1px solid #999;
+	display: block;
+	text-decoration: none;
+	color: #000;
+}
+
+#pagenum ul li a:hover{
+	background: #ccc;
+	font-weight: bold;
+}
 
 
-
-
-
-
-
-
-
-
-
+#pagenum ul li a.selected{
+	background: #ccc;
+	font-weight: bold;	
+}
 
 
 

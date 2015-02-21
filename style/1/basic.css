@@ -131,11 +131,31 @@ h2{
 	font-weight: bold;	
 }
 
+#page_text{
+	clear: both;
+
+	padding: 0px 0 10px 0;
+	height: 20px;
+}
+
+#page_text ul{
+	text-align: center;
+
+}
+#page_text ul li{
+	display: inline;
+	padding-top: -25px;
+}
 
 
-
-
-
+#page_text ul li a{
+	text-decoration: none;
+	color: #666;
+}
+#page_text ul li a:hover{
+	color: #f00;
+	text-decoration: underline;
+}
 
 
 

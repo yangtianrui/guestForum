@@ -40,10 +40,6 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 	?>
 </div>
 
-
-
-
-
 <?php 
 require ROOT_PATH."include/footer.inc.php";
 ?>

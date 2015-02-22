@@ -121,6 +121,94 @@ function login_state() {
 }
 
 
+/**
+ * 创建一个分页，无参数或0为数字分页，参数为1 文本分页
+ * @param number $type
+ */
+
+function paging($type=0) {
+	global $page_abs,$pagenow,$page_sum;
+	if ($type){//数字分页
+		echo '<div id="pagenum">';
+		echo '<ul>';
+		 for($i=1;$i<$page_abs+1;$i++){
+			if ($pagenow == $i){
+				echo '<li><a href="blog.php?page='.$i.'" class="selected">'.$i.'</a></li>';
+			}else{
+				echo '<li><a href="blog.php?page='.$i.'">'.$i.'</a></li>';
+			}
+		
+			}
+			echo '</ul>';
+		echo '</div>';
+
+	}else{//文本分页
+		echo '<div id="page_text">';
+			echo '<ul>';
+				echo "<li>$pagenow/".$page_abs."页 |</li>";
+				echo "<li>共有<strong>$page_sum</strong>个会员 |</li>";
+				if ($pagenow == 1) {
+							echo '<li>首页 |</li>';
+							echo '<li>上一页 |</li>';
+					  } else {//$_SERVER['SCRIPT_NAME']是php环境变量，会返回当前页面的名称,也可使用本页面自定义的常量SCRIPT
+					  		echo '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?page=1">首页</a> |</li>';
+					  		echo '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?page='.($pagenow-1).'">上一页</a> |</li>';
+					  }
+					 if ($pagenow == $page_abs) {
+							echo '<li>下一页 |</li>';
+							echo '<li>尾页 |</li>';
+							
+					  } else {
+					  		echo '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?page='.($pagenow+1).'">下一页</a> |</li>';
+					  		echo '<li><a href="'.$_SERVER['SCRIPT_NAME'].'?page='.$page_abs.'">尾页</a> |</li>';
+					  		
+				 } 
+
+			echo '</ul>';
+		echo '</div>';
+	}
+}
+
+/**
+ * 在分页前进行参数的设置
+ * @param int  $size
+ * @param string $sql
+ */
+function page_sta($size, $sql) {
+	global $pagenow,$pagesize,$page_sum,$page_abs,$pagenum;//将函数内的变量定义成全局变量，便于函数外部的访问
+	if (isset($_GET['page'])){
+		$pagenow = $_GET['page'];
+		//如果page参数不存在，或者不合法，使初始页面的参数为1
+		if (empty($_GET['page']) || $_GET['page'] < 0 || !is_numeric($_GET['page'])){
+			$pagenow = 1;
+		}else{
+			$pagenow = intval($_GET['page']);//对浮点数取整
+		}
+	}else{
+		$pagenow = 1;
+	}
+	
+	$pagesize = $size;
+	
+	$page_sum = mysql_num_rows(_query($sql));//返回所有搜索结果的字段数
+	if ($page_sum == 0){
+		$page_abs = 1;//如果数据库中没有数据，默认显示第一页
+	}else{
+		$page_abs = ceil($page_sum/$pagesize);
+	}
+	
+	if ($pagenow > $page_abs){
+		$pagenow = $page_abs;
+	}
+	$pagenum = ($pagenow-1)*$pagesize;
+}
+
+
+
+
+
+
+
 
 
 

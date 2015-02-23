@@ -47,7 +47,7 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 <div id="member">
 	<?php require ROOT_PATH.'include/sidebar.inc.php';?>
 	<div id="main">
-		<h2>个人管理中心</h2>
+		<h2>个人信息</h2>
 		<dl>
 			<dd>用 户 名 :　　<?php echo $in_html['username'];?></dd>
 			<dd>性　　别:　　<?php echo $in_html['sex'];?></dd>

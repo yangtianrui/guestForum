@@ -18,7 +18,7 @@
 			echo '<li><a href="zhuce.php">注册</a></li> <li><a href="login.php">登录</a></li>';
 		}
 	?>
-	<li><a href="blog.php">博友</a></li>
+	<li><a href="blog.php">会员</a></li>
 	<li>风格 </li>
 	<li>管理</li>
 	<?php 

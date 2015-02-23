@@ -203,7 +203,22 @@ function page_sta($size, $sql) {
 	$pagenum = ($pagenow-1)*$pagesize;
 }
 
+/**
+ * 对传入参数进行html过滤，如果是数组遍历后过滤返回
+ * @param string or array $wrap
+ * @return string
+ */
 
+function html_spc($wrap) {
+	if (is_array($wrap)){
+		foreach ($wrap as $k=>$v){
+			$wrap[$k] = htmlspecialchars($v);
+		}
+	}else{
+		$wrap = htmlspecialchars($wrap);
+	}
+	return $wrap;
+}
 
 
 

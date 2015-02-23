@@ -19,7 +19,7 @@ if ($_GET['action'] == 'login.php'){
 		_close();
 		session_destroy();//清除session
 		set_cookies($_row['g_username'], $_row['g_uniqid'], $_clean['time']);
-		header("Location: index.php");
+		header("Location: member.php");
 	}else{
 		_close();
 		session_destroy();//清除session

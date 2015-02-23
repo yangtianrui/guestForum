@@ -24,8 +24,12 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 ?>
 
 <div id="blog">
-	<h2>博友列表</h2>
-	<?php while(!!$_row = _fetch_list($result)){ //使用字符串作为下标?>
+	<h2>会员列表</h2>
+	<?php 
+	while(!!$_row = _fetch_list($result)){ 
+		$_row = html_spc($_row);
+	//使用字符串作为下标
+	?>
 	<dl>
 		<dd class="user"><?php echo $_row['g_username']; ?></dd>
 		<dt><img src="<?php echo $_row['g_face'];?>" alt="admin" /></dt>
@@ -36,7 +40,8 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 	</dl>
 <?php }?>
 	<?php 
-		paging(1);
+		mysql_free_result($result);//销毁结果集
+		paging(1);//调用分页函数
 	?>
 </div>
 

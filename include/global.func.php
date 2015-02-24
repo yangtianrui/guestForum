@@ -221,7 +221,16 @@ function html_spc($wrap) {
 }
 
 
-
+/**
+ * 比对数据库中的唯一标识符与cookie的标识符是否正确，防止伪造cookie登录
+ * @param string $sql_uniq
+ * @param string $cookie_uniq
+ */
+function ck_cookie_uniqid($sql_uniq, $cookie_uniq) {
+	if (!!$sql_uniq == $cookie_uniq){
+		alert_back('标识符异常！请重试');
+	}
+}
 
 
 

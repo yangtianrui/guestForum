@@ -6,26 +6,32 @@ session_start();
 require  dirname(__FILE__).'/include/common.inc.php';
 if ($_GET['action'] == 'modify'){
 	ck_code($_POST['rcode'], $_SESSION['rcode']);
-	include ROOT_PATH.'include/zhuce.func.php';
-	$_clean = array();
-	$_clean['password'] = ck_modify_pwd($_POST['password'], 6);
-	$_clean['face'] = ck_sex_face($_POST['face']);
-	$_clean['email'] = ck_email($_POST['email'], 2, 40);
-	//提交数据
-	if (empty($_clean['password'])){
-		_query("UPDATE g_user SET g_face='{$_clean['face']}',g_email='{$_clean['email']}' WHERE g_username='{$_COOKIE['username']}'");
-	}else{
-		_query("UPDATE g_user SET g_password='{$_clean['password']}',g_face='{$_clean['face']}',g_email='{$_clean['email']}' WHERE g_username='{$_COOKIE['username']}'");
-	}
-	//修改成功的话跳转
-	if (_affected() == 1){
-		_close();
-		session_destroy();
-		location_href('修改成功', "member.php");
-	}else{
-		_close();
-		session_destroy();
-		location_href('未知错误！请重试', 'member_modify.php');
+	//判断要修改的数据是否存在
+	if (!!$row = _fetch_query("SELECT g_id FROM g_user WHERE g_username='{$_COOKIE['username']}' LIMIT 1")){
+		//比对唯一标识符，防止伪造cookie
+		ck_cookie_uniqid($row['uniqid'], $_COOKIE['uniqid']);
+	
+		include ROOT_PATH.'include/zhuce.func.php';
+		$_clean = array();
+		$_clean['password'] = ck_modify_pwd($_POST['password'], 6);
+		$_clean['face'] = ck_sex_face($_POST['face']);
+		$_clean['email'] = ck_email($_POST['email'], 2, 40);
+		//提交数据
+		if (empty($_clean['password'])){
+			_query("UPDATE g_user SET g_face='{$_clean['face']}',g_email='{$_clean['email']}' WHERE g_username='{$_COOKIE['username']}'");
+		}else{
+			_query("UPDATE g_user SET g_password='{$_clean['password']}',g_face='{$_clean['face']}',g_email='{$_clean['email']}' WHERE g_username='{$_COOKIE['username']}'");
+		}
+		//修改成功的话跳转
+		if (_affected() == 1){
+			_close();
+			session_destroy();
+			location_href('修改成功', "member.php");
+		}else{
+			_close();
+			session_destroy();
+			location_href('没有任何修改', 'member_modify.php');
+		}
 	}
 }
 //阻止用户直接登录

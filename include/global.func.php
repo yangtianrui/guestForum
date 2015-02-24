@@ -233,6 +233,14 @@ function ck_cookie_uniqid($sql_uniq, $cookie_uniq) {
 }
 
 
+/**
+ * 弹窗并且关闭窗口
+ * @param string $str
+ */
+function alert_close($str) {
+	echo "<script>alert('".$str."');window.close();</script>";
+	exit();
+}
 
 
 

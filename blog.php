@@ -5,7 +5,7 @@ define(SCRIPT, 'blog');
 require  dirname(__FILE__).'/include/common.inc.php';
 global $pagenum, $pagesize;
 page_sta(20, 'SELECT g_username FROM g_user');
-$result = mysql_query("SELECT g_username,g_face,g_sex FROM g_user ORDER by g_reg_time DESC LIMIT $pagenum,$pagesize");
+$result = mysql_query("SELECT g_id,g_username,g_face,g_sex FROM g_user ORDER by g_reg_time DESC LIMIT $pagenum,$pagesize");
 
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ $result = mysql_query("SELECT g_username,g_face,g_sex FROM g_user ORDER by g_reg
 <?php 
 require ROOT_PATH.'include/title.inc.php';
 ?>
-
+<script type="text/javascript" src="js/blog.js"></script>
 </head>
 <body>
 <?php 
@@ -33,7 +33,7 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 	<dl>
 		<dd class="user"><?php echo $_row['g_username']; ?></dd>
 		<dt><img src="<?php echo $_row['g_face'];?>" alt="admin" /></dt>
-		<dd class="message">发消息</dd>
+		<dd class="message"><a href="#" name="message" title="<?php echo $_row['g_id'];?>">发消息</a></dd>
 		<dd class="friend">加为好友</dd>
 		<dd class="guest">写留言</dd>
 		<dd class="flower">给他送花</dd>

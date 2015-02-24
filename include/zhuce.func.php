@@ -130,6 +130,24 @@ function ck_sex_face($_sex) {
 	return mysql_str($_sex);
 }
 
+/**
+ * 对修改资料页的密码进行过滤
+ * @param unknown $string
+ * @param int $min
+ * @return string
+ */
+function ck_modify_pwd($string, $min) {
+	if (!empty($string)){
+		if (strlen($string)<$min){
+			alert_back('密码不得小于'.$min.'位');
+		}
+	}else{
+		return null;
+	}
+	return sha1($string);
+}
+
+
 
 
 

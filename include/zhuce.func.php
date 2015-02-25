@@ -108,18 +108,6 @@ function ck_email($email, $min, $max) {
 	return mysql_str($email);
 }
 
-/**
- * 验证唯一标识符是否相等
- * @param unknown $_sta
- * @param unknown $_end
- * @return Ambigous <string, unknown, string>
- */
-function ck_uniqid($_sta, $_end) {
-	if ((strlen($_sta) != 40) || ($_sta != $_end)){
-		alert_back('标识符异常，请刷新后再提交！');
-	}
-	return mysql_str($_sta);
-}
 
 /**
  * 对性别或头像表单进行转译

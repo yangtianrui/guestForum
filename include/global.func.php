@@ -64,17 +64,23 @@ function alert_back($str) {
 }
 
 /**
- * 判断php是否开启自动转译
+ * 判断php是否开启自动转译,没有的话转译字符串
  * @param string $_str
  * @return string|unknown
  */
 
 function mysql_str($_str) {
 	if (!GPC){//判断是否开启自动转译
-		return mysql_real_escape_string($_str);//将数据进行转译
-	}else{
-		return $_str;
+		if(is_array($_str)){
+			foreach ($_str as $k => $v){
+				$_str[$k] = mysql_real_escape_string($v);
+			}
+		}else{
+			$_str = mysql_real_escape_string($_str);
+		}
+		
 	}
+	return $_str;
 }
 
 
@@ -242,7 +248,24 @@ function alert_close($str) {
 	exit();
 }
 
+/**
+ * 验证唯一标识符是否相等
+ * @param unknown $_sta
+ * @param unknown $_end
+ * @return Ambigous <string, unknown, string>
+ */
+function ck_uniqid($_sta, $_end) {
+	if (($_sta != $_end)){
+		alert_back('标识符异常，请刷新后再提交！');
+	}
+	return mysql_str($_sta);
+}
 
-
+function ck_content($string) {
+	if (mb_strlen($string)<2 || mb_strlen($string)>200){
+		alert_close('消息内容不能大于200位小于2位');
+	}
+	return $string;
+}
 
 ?>

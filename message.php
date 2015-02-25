@@ -2,9 +2,33 @@
 header("Content-Type:text/html;charset=utf-8");
 define(IN_CF, true);
 define(SCRIPT, message);
+session_start();
 require  dirname(__FILE__).'/include/common.inc.php';
 if (!isset($_COOKIE['username'])) {
 	alert_close('请先登录在执行此操作！');
+}
+if ($_GET['action'] == 'write'){
+	ck_code($_POST['rcode'], $_SESSION['rcode']);
+	if (!!$row = _fetch_query("SELECT g_uniqid FROM g_user WHERE g_username='{$_COOKIE['username']}'")){
+		ck_uniqid($row['g_uniqid'], $_COOKIE['uniqid']);
+		$_clean['touser'] = $_POST['touser'];
+		$_clean['fromuser'] = $_COOKIE['username'];
+		$_clean['content'] = ck_content($_POST['content']);
+		mysql_str($_clean);
+		_query("INSERT INTO g_message (touser,fromuser,content,date) VALUES ('{$_clean['touser']}','{$_clean['fromuser']}','{$_clean['content']}',Now())");
+		//写入成功后的操作
+		if (_affected() == 1){
+			_close();
+			session_destroy();
+			alert_close('发送成功！');
+		}else{
+			_close();
+			session_destroy();
+			alert_close('发送失败，请重试');
+		}
+	}else{
+		alert_close('唯一标识符异常,请不要尝试伪造cookie登录！');
+	}
 }
 if ($_GET['id']){
 	//获取数据
@@ -34,7 +58,8 @@ require ROOT_PATH.'include/title.inc.php';
 
 <div id="message">
 	<h3>发送消息</h3>
-	<form>
+	<form action="message.php?action=write" method="POST">
+		<input type="hidden" name="touser" value="<?php echo $in_html['touser']; ?>" />
 		<dl>
 			<dd><input type="text" name="text" class="text" value="To:<?php echo $in_html['touser'];?>" /></dd>
 			<dd><textarea name="content"></textarea></dd>

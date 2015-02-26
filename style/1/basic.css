@@ -158,3 +158,12 @@ h2{
 }
 
 
+a{
+	color: #333;
+	text-decoration: none;
+}
+
+a:hover{
+	color: #f00;
+	
+}

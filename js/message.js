@@ -3,7 +3,7 @@ window.onload = function() {
 	var $fm = document.getElementsByTagName('form')[0];
 	$fm.onsubmit = function() {
 		if($fm.rcode.value.length != 4){
-			alert('验证码错误！');
+			alert('验证码错误！w');
 			$fm.rcode.value = '';
 			$fm.rcode.focus();
 			return false;

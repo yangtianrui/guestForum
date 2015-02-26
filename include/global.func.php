@@ -139,9 +139,9 @@ function paging($type=0) {
 		echo '<ul>';
 		 for($i=1;$i<$page_abs+1;$i++){
 			if ($pagenow == $i){
-				echo '<li><a href="blog.php?page='.$i.'" class="selected">'.$i.'</a></li>';
+				echo '<li><a href="'.SCRIPT.'.php?page='.$i.'" class="selected">'.$i.'</a></li>';
 			}else{
-				echo '<li><a href="blog.php?page='.$i.'">'.$i.'</a></li>';
+				echo '<li><a href="'.SCRIPT.'.php?page='.$i.'">'.$i.'</a></li>';
 			}
 		
 			}
@@ -152,7 +152,7 @@ function paging($type=0) {
 		echo '<div id="page_text">';
 			echo '<ul>';
 				echo "<li>$pagenow/".$page_abs."页 |</li>";
-				echo "<li>共有<strong>$page_sum</strong>个会员 |</li>";
+				echo "<li>共有<strong>$page_sum</strong>个内容 |</li>";
 				if ($pagenow == 1) {
 							echo '<li>首页 |</li>';
 							echo '<li>上一页 |</li>';
@@ -260,12 +260,35 @@ function ck_uniqid($_sta, $_end) {
 	}
 	return mysql_str($_sta);
 }
-
+/**
+ * 验证消息内容的长度
+ * @param unknown $string
+ * @return unknown
+ */
 function ck_content($string) {
 	if (mb_strlen($string)<2 || mb_strlen($string)>200){
 		alert_close('消息内容不能大于200位小于2位');
 	}
 	return $string;
 }
+
+/**
+ * 对content内容取前14个字符 
+ * @param unknown $str
+ * @return string
+ */
+
+function fix_content($str) {
+	if (mb_strlen($str, 'utf-8')>16){
+		$str = mb_substr($str, 1, 16, 'utf-8').'...';
+	}
+	return $str;
+}
+
+
+
+
+
+
 
 ?>

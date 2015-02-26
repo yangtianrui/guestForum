@@ -6,9 +6,29 @@ require  dirname(__FILE__).'/include/common.inc.php';
 if (!isset($_COOKIE['username'])){
 	alert_back('请先登录！');
 }
+//删除短信的模块
+if ($_GET['action'] == 'delete' && isset($_GET['id'])){
+	$row_del = _fetch_query("select id,touser,fromuser,content,date from g_message where id={$_GET['id']}");
+	if ($row_del){
+		//删除之前验证唯一标识符
+		if (!!$row = _fetch_query("SELECT g_uniqid FROM g_user WHERE g_username='{$_COOKIE['username']}' LIMIT 1")){
+			ck_cookie_uniqid($row['g_uniqid'], $_COOKIE['uniqid']);
+			_query("DELETE FROM g_message WHERE id={$_GET['id']}");
+			if (_affected() == 1){
+				_close();
+				location_href('删除成功', "member_message.php");
+			}else{
+				_close();
+				alert_back('删除失败，请重试');
+			}
+		}	
+	}else{
+		alert_back('此短信不存在！');
+	}
+}
 //通过id的参数来判断短信的内容
 if ($_GET['id']){
-	$row = _fetch_query("select touser,fromuser,content,date from g_message where id={$_GET['id']}");
+	$row = _fetch_query("select id,touser,fromuser,content,date from g_message where id={$_GET['id']}");
 	if ($row){
 		$row = html_spc($row);
 	}else{
@@ -27,6 +47,7 @@ if ($_GET['id']){
 require ROOT_PATH.'include/title.inc.php';
 ?>
 <link rel="stylesheet" type="text/css" href="style/1/member.css">
+<script type="text/javascript" src="js/message_detail.js"></script>
 </head>
 <body>
 <?php 
@@ -38,9 +59,9 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 			<h2>消息详情</h2>
 			<dl>
 				<dd>发  信  人:　<?php echo $row['touser'];?></dd>
-				<dd>内　　容:　<strong display="block"><?php echo $row['content']?></strong></dd>
+				<dd>内　　容:　<strong><?php echo $row['content']?></strong></dd>
 				<dd>发信时间:　<?php echo $row['date']?></dd>
-				<dd class="button"><input type="button" value="返回" onclick="javascript:history.back();"><input type="button" value="删除""></dd>
+				<dd class="button"><input type="button" value="返回" id="return" onclick="javascript:history.back();"><input type="button" name="<?php echo $row['id'];?>" id="delete" value="删除"></dd>
 			</dl>
 		</div>
 </div>			

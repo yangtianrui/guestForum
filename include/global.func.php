@@ -233,7 +233,7 @@ function html_spc($wrap) {
  * @param string $cookie_uniq
  */
 function ck_cookie_uniqid($sql_uniq, $cookie_uniq) {
-	if (!!$sql_uniq == $cookie_uniq){
+	if ($sql_uniq != $cookie_uniq){
 		alert_back('标识符异常！请重试');
 	}
 }
@@ -266,8 +266,8 @@ function ck_uniqid($_sta, $_end) {
  * @return unknown
  */
 function ck_content($string) {
-	if (mb_strlen($string)<2 || mb_strlen($string)>200){
-		alert_close('消息内容不能大于200位小于2位');
+	if (mb_strlen($string)<2 || mb_strlen($string)>50){
+		alert_close('消息内容不能大于50位小于2位');
 	}
 	return $string;
 }

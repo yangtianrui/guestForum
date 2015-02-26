@@ -7,9 +7,9 @@ require  dirname(__FILE__).'/include/common.inc.php';
 if ($_GET['action'] == 'modify'){
 	ck_code($_POST['rcode'], $_SESSION['rcode']);
 	//判断要修改的数据是否存在
-	if (!!$row = _fetch_query("SELECT g_id FROM g_user WHERE g_username='{$_COOKIE['username']}' LIMIT 1")){
+	if (!!$row = _fetch_query("SELECT g_uniqid FROM g_user WHERE g_username='{$_COOKIE['username']}' LIMIT 1")){
 		//比对唯一标识符，防止伪造cookie
-		ck_cookie_uniqid($row['uniqid'], $_COOKIE['uniqid']);
+		ck_cookie_uniqid($row['g_uniqid'], $_COOKIE['uniqid']);
 	
 		include ROOT_PATH.'include/zhuce.func.php';
 		$_clean = array();

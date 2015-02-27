@@ -1,6 +1,6 @@
 <?php
 /* 调用header界面 */
-
+	global $in_html_meg;//消息提醒的变量
 	if(!defined('IN_CF')) {//没有授权，直接退出
 		exit("Access Defined");
 	}
@@ -13,7 +13,7 @@
 
 	<?php 
 		if (isset($_COOKIE['username'])){
-			echo "<li><a href='member.php' style='font-weight:bold;'>{$_COOKIE['username']}的个人中心</a></li>";
+			echo '<li><a href="member.php" style="font-weight:bold;">'.$_COOKIE['username'].'的个人中心</a>'.$in_html_meg.'</li>';
 		}else{
 			echo '<li><a href="zhuce.php">注册</a></li> <li><a href="login.php">登录</a></li>';
 		}

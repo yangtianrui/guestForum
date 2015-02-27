@@ -28,7 +28,12 @@ if ($_GET['action'] == 'delete' && isset($_GET['id'])){
 }
 //通过id的参数来判断短信的内容
 if ($_GET['id']){
-	$row = _fetch_query("select id,touser,fromuser,content,date from g_message where id={$_GET['id']}");
+	$row = _fetch_query("select id,touser,fromuser,content,date,state from g_message where id={$_GET['id']}");
+	//更改短信的状态,使成为已读
+	if(empty($row['state'])){
+		_query("UPDATE g_message SET state=1 WHERE id='{$_GET['id']}' LIMIT 1");
+		if(!_affected()) alert_back('未知错误！请重试');
+	}
 	if ($row){
 		$row = html_spc($row);
 	}else{
@@ -61,7 +66,7 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 				<dd>发  信  人:　<?php echo $row['touser'];?></dd>
 				<dd>内　　容:　<strong><?php echo $row['content']?></strong></dd>
 				<dd>发信时间:　<?php echo $row['date']?></dd>
-				<dd class="button"><input type="button" value="返回" id="return" onclick="javascript:history.back();"><input type="button" name="<?php echo $row['id'];?>" id="delete" value="删除"></dd>
+				<dd class="button"><input type="button" value="返回" id="return"><input type="button" name="<?php echo $row['id'];?>" id="delete" value="删除"></dd>
 			</dl>
 		</div>
 </div>			

@@ -28,7 +28,7 @@ if ($_GET['action'] == 'delete' && isset($_POST['ids'])) {
 //分页函数的准备
 page_sta(10, "SELECT id FROM g_message WHERE touser='{$_COOKIE['username']}'");
 global $pagenum,$pagesize;
-$result = _query("SELECT  id,touser,fromuser,content,date FROM g_message WHERE touser='{$_COOKIE['username']}' ORDER BY date DESC LIMIT $pagenum,$pagesize");
+$result = _query("SELECT  id,touser,fromuser,content,date,state FROM g_message WHERE touser='{$_COOKIE['username']}' ORDER BY date DESC LIMIT $pagenum,$pagesize");
  ?>
  <!DOCTYPE html>
 <html>
@@ -52,9 +52,16 @@ require ROOT_PATH."include/header.inc.php";
 			<form method="post" action="?action=delete">
 				<table>
 					
-						<tr><th>发信人</th><th>短信内容</th><th>时间</th><th>操作</th></tr>
-						<?php while(!!$row = _fetch_list($result)){?>
-						<tr><td><?php echo $row['touser']?></td><td style="width: 200px" title="<?php echo $row['content'] ;?> "><a href="message_detail.php?id=<?php echo $row['id']; ?>"><?php echo fix_content($row['content'])?></a></td><td><?php echo $row['date']?></td><td><input type="checkbox" name="ids[]" value="<?php echo $row['id']?>" /></td></tr><!-- 复选框使用数组传值 -->
+						<tr><th>发信人</th><th>短信内容</th><th>时间</th><th>状态</th><th>操作</th></tr>
+						<?php 
+							while(!!$row = _fetch_list($result)){
+								if ($row['state']) {
+									$in_html['state'] = '已读';
+								}else{
+									$in_html['state'] = '<strong>未读</strong>';
+								}
+						?>
+						<tr><td><?php echo $row['touser']?></td><td style="width: 200px" title="<?php echo $row['content'] ;?> "><a href="message_detail.php?id=<?php echo $row['id']; ?>"><?php echo fix_content($row['content'])?></a></td><td><?php echo $row['date']?></td><td><?php echo "$in_html[state]"; ?></td><td><input type="checkbox" name="ids[]" value="<?php echo $row['id']?>" /></td></tr><!-- 复选框使用数组传值 -->
 						<?php }?>
 						<tr><td colspan="5"><label for="ckall">全选<input type="checkbox" name="ckall" id="ckall" /></label><input type="submit" value="批量删除" class="submit" /></td></tr>
 					

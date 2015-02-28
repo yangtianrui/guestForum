@@ -1,8 +1,12 @@
 window.onload = function() {
 	var $msg = document.getElementsByName('message');
+	var $fri = document.getElementsByName('friend');
 	for (var i = 0; i < $msg.length; i++) {
 		$msg[i].onclick = function() {
 			centerWindow('message.php?id='+this.title, 'message', '400', '400');
+		}
+		$fri[i].onclick = function() {
+			centerWindow('friend.php?id='+this.title, 'friend', '400', '400');
 		}
 	};
 }

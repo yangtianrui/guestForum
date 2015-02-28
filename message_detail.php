@@ -8,7 +8,8 @@ if (!isset($_COOKIE['username'])){
 }
 //删除短信的模块
 if ($_GET['action'] == 'delete' && isset($_GET['id'])){
-	$row_del = _fetch_query("select id,touser,fromuser,content,date from g_message where id={$_GET['id']}");
+	$id['id'] = mysql_str($_GET['id']);
+	$row_del = _fetch_query("select id,touser,fromuser,content,date from g_message where id='{$id['id']}'");
 	if ($row_del){
 		//删除之前验证唯一标识符
 		if (!!$row = _fetch_query("SELECT g_uniqid FROM g_user WHERE g_username='{$_COOKIE['username']}' LIMIT 1")){
@@ -66,7 +67,7 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 				<dd>发  信  人:　<?php echo $row['touser'];?></dd>
 				<dd>内　　容:　<strong><?php echo $row['content']?></strong></dd>
 				<dd>发信时间:　<?php echo $row['date']?></dd>
-				<dd class="button"><input type="button" value="返回" id="return"><input type="button" name="<?php echo $row['id'];?>" id="delete" value="删除"></dd>
+				<dd class="button"><input type="button" value="返回" id="return" onclick="javascript:location.href="member_message.php";"><input type="button" name="<?php echo $row['id'];?>" id="delete" value="删除"></dd>
 			</dl>
 		</div>
 </div>			

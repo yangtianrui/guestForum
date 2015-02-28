@@ -1,9 +1,16 @@
 window.onload = function() {
 	rcode();
 	var $fm = document.getElementsByTagName('form')[0];
+	$val = $fm.content.value;
+	$fm.content.onfocus = function() {
+		this.value = '';
+	}
+	$fm.content.onblur = function() {
+		this.value = $val;
+	}
 	$fm.onsubmit = function() {
 		if($fm.rcode.value.length != 4){
-			alert('验证码错误！w');
+			alert('验证码错误！');
 			$fm.rcode.value = '';
 			$fm.rcode.focus();
 			return false;

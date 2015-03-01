@@ -26,7 +26,7 @@ if ($_GET['action'] == 'add'){
 		if (_affected() == 1){
 			_close();
 			session_destroy();
-			alert_close('添加好友成功！');
+			alert_close('添加好友成功！正在等待对方验证');
 		}else{
 			_close();
 			session_destroy();

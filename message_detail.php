@@ -8,8 +8,8 @@ if (!isset($_COOKIE['username'])){
 }
 //删除短信的模块
 if ($_GET['action'] == 'delete' && isset($_GET['id'])){
-	$id['id'] = mysql_str($_GET['id']);
-	$row_del = _fetch_query("select id,touser,fromuser,content,date from g_message where id='{$id['id']}'");
+	//$id['id'] = mysql_str($_GET['id']);
+	$row_del = _fetch_query("select id from g_message where id='{$_GET['id']}'");
 	if ($row_del){
 		//删除之前验证唯一标识符
 		if (!!$row = _fetch_query("SELECT g_uniqid FROM g_user WHERE g_username='{$_COOKIE['username']}' LIMIT 1")){

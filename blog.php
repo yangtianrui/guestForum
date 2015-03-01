@@ -36,7 +36,7 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 		<dd class="message"><a href="javascript:void(0);" name="message" title="<?php echo $_row['g_id'];?>">发消息</a></dd>
 		<dd class="friend"><a href="javascript:void(0);" name="friend" title="<?php echo $_row['g_id'];?>">加为好友</a></dd>
 		<dd class="guest">写留言</dd>
-		<dd class="flower">给他送花</dd>
+		<dd class="flower"><a href="javascript:void(0);" name="praise" title="<?php echo $_row['g_id'];?>">给他点赞</a></dd>
 	</dl>
 <?php }?>
 	<?php 

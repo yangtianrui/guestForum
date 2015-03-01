@@ -14,7 +14,7 @@ if(!defined('IN_CF')) {//没有授权，直接退出
 		<dt>其他管理</dt>
 		<dd><a href="member_message.php">消息查询</a></dd>
 		<dd><a href="member_friend.php">好友设置</a></dd>
-		<dd><a href="#">查询花朵</a></dd>
+		<dd><a href="member_praise.php">查询点赞</a></dd>
 		<dd><a href="#">个人相册</a></dd>
 	</dl>
 </div>

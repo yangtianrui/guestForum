@@ -29,6 +29,8 @@ if ($_GET['action'] == 'zhuce.php') {
 	//" "里面直接放变量是可以的，但放数组应该使用{}将内容包起来  如：{$_clean['username]}
 	_query("INSERT INTO g_user (g_uniqid, g_active, g_username, g_password, g_question, g_answer, g_email,	g_sex, g_face, g_reg_time,	g_last, g_ip) VALUES ('{$_clean['uniqid']}','{$_clean['active']}','{$_clean['username']}','{$_clean['password']}','{$_clean['question']}','{$_clean['answer']}','{$_clean['email']}','{$_clean['sex']}','{$_clean['face']}',NOW(),NOW(),'{$_SERVER["REMOTE_ADDR"]}')") or die('sql执行失败'.mysql_error());
 	if (_affected() == 1){
+		$_clean['id'] = mysql_insert_id();//获取刚刚新增的id值
+		set_xml('new.xml', $_clean);//注册完成后新建一个xml保存新用户信息 
 		_close();
 		session_destroy();
 		location_href('注册成功', "./active.php?active=$_clean[active]");

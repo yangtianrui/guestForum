@@ -286,7 +286,26 @@ function fix_content($str) {
 }
 
 
-
+function set_xml($handle, $clean) {
+	$fp = @fopen($handle, 'w');
+	if (!$fp) {
+		exit('打开文件错误');
+	}
+	flock($fp, LOCK_EX);//锁定文件，防止多人同时操作
+	
+	$str = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n
+		\t<vip>\r\n
+			\t<id>{$clean['id']}</id>\r\n
+			\t<username>{$clean['username']}</username>\r\n
+			\t<sex>{$clean['sex']}</sex>\r\n
+			\t<face>{$clean['face']}</face>\r\n
+			\t<email>{$clean['email']}</email>\r\n
+		\t</vip>";
+	fwrite($fp, $str, strlen($str));
+	
+	flock($fp, LOCK_UN);//解锁文件
+	fclose($fp);
+}
 
 
 

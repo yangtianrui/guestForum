@@ -23,7 +23,56 @@
 }
 
   
+#user dl {
+	width:150px;
+	margin: 0 auto;
+}
+#user dl dt {
+	width:150px;
+	margin:0 0 15px 0;
+}
+#user dl dt img {
+	margin:0 auto;
+	display:block;
+}
+#user dl dd {
+	height:20px;
+	line-height:20px;
+	text-align:center;
+	width:75px;
+	float:left;
+	margin-top: 5px;
+}
+#user dl dd.user {
+	width:150px;
+	float:none;
+	font-weight: bold;
+	color: #999;
+}
 
+#user dl dd.flower{
+	background: url('../../images/x4.gif') no-repeat -2px center;
+	
+}
+
+#user dl dd.message{
+	background: url('../../images/x1.gif') no-repeat left center;
+	
+}
+#user dl dd.friend{
+	background: url('../../images/x2.gif') no-repeat -2px center;
+	
+}
+
+#user dl dd.guest{
+	background: url('../../images/x3.gif') no-repeat left center;
+	
+}
+
+#user dl dd.email{
+	width: 170px;
+	margin-left: -5px;
+}
 
 
 

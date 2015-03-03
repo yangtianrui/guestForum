@@ -285,7 +285,11 @@ function fix_content($str) {
 	return $str;
 }
 
-
+/**
+ * 设置xml，用于新进会员, 并且生成特定的xml文件
+ * @param resource $handle
+ * @param array $clean
+ */
 function set_xml($handle, $clean) {
 	$fp = @fopen($handle, 'w');
 	if (!$fp) {
@@ -306,6 +310,36 @@ function set_xml($handle, $clean) {
 	flock($fp, LOCK_UN);//解锁文件
 	fclose($fp);
 }
+
+/**
+ * 读取特定的xml文件，并返回一个数组
+ * @param resource $xmlfile
+ * @return array name $_html
+ */
+
+function get_xml($xmlfile) {
+	$file = $xmlfile;
+	if (file_exists($file)){
+		$xml = file_get_contents($file);//将xml读取到文件中
+		preg_match_all('/<vip>(.*)<\/vip>/s', $xml, $xml_array);//将xml文件vip下的文件筛选出来，并且返回一个数组
+		foreach ($xml_array as $value){
+			preg_match_all('/<id>(.*)<\/id>/', $xml, $_id);
+			preg_match_all('/<username>(.*)<\/username>/', $xml, $_username);
+			preg_match_all('/<sex>(.*)<\/sex>/', $xml, $_sex);
+			preg_match_all('/<face>(.*)<\/face>/', $xml, $_face);
+			preg_match_all('/<email>(.*)<\/email>/', $xml, $_email);
+			$_html['id'] = $_id[1][0];
+			$_html['username'] = $_username[1][0];
+			$_html['sex'] = $_sex[1][0];
+			$_html['face'] = $_face[1][0];
+			$_html['email'] = $_email[1][0];
+		}
+	}else{
+		echo '文件不存在！';
+	}
+	return $_html;
+}
+
 
 
 

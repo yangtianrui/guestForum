@@ -7,6 +7,72 @@
 	float: right;
 }
 
+#list a.post{
+	display: block;
+	width: 114px;
+	height: 33px;
+	background: url('../../images/aricle.jpg');
+	text-indent: -9999px;
+	margin: 15px 10px 0 auto;
+}
+
+#list ul.article{
+	padding: 0 40px;
+	margin-top: 20px;
+}
+#list ul.article li em{
+	float: right;
+	font-style: normal;
+
+}
+
+#list ul.article li{
+	border-bottom: 1px solid #eee;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 20px;
+}
+
+#list ul.article li.icon1{
+	background: url('../../images/icon1') no-repeat left center;
+	
+}
+#list ul.article li.icon2{
+	background: url('../../images/icon2') no-repeat left center;
+	
+}
+#list ul.article li.icon3{
+	background: url('../../images/icon3') no-repeat left center;
+	
+}
+#list ul.article li.icon4{
+	background: url('../../images/icon4') no-repeat left center;
+	
+}
+#list ul.article li.icon5{
+	background: url('../../images/icon5') no-repeat left center;
+	
+}
+#list ul.article li.icon6{
+	background: url('../../images/icon6') no-repeat left center;
+	
+}
+#list ul.article li.icon7{
+	background: url('../../images/icon7') no-repeat left center;
+	
+}
+#list ul.article li.icon8{
+	background: url('../../images/icon8') no-repeat left center;
+	
+}
+#list ul.article li.icon9{
+	background: url('../../images/icon9') no-repeat left center;
+	
+}
+#list ul.article li.icon10{
+	background: url('../../images/icon10') no-repeat left center;
+	
+}
 #user{
 	width: 340px;
 	height: 250px;

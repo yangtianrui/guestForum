@@ -79,12 +79,37 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 						echo '<label for="type'.$num.'"><input type="radio" name="type" id="type'.$num.'" value="'.$num.'" />';						
 					}
 					
-					echo '<img src="images/icon'.$num.'.gif" alt="类型"></label>';
+					echo '<img src="images/icon'.$num.'.gif" class="type" alt="类型"></label>';
 					if ($num == 5) echo '<br />　 　　';
 				}
 			 ?>
 		</dd>
-		<dd><textarea name="content"></textarea></dd>
+		<dd>
+			<div id="ubb" >
+					<img src="images/fontsize.gif" title="字体大小" alt="字体大小" />
+					<img src="images/space.gif" title="线条" alt="线条" />
+					<img src="images/bold.gif" title="粗体" />
+					<img src="images/italic.gif" title="斜体" />
+					<img src="images/underline.gif" title="下划线" />
+					<img src="images/strikethrough.gif" title="删除线" />
+					<img src="images/space.gif" />
+					<img src="images/color.gif" title="颜色" />
+					<img src="images/url.gif" title="超链接" />
+					<img src="images/email.gif" title="邮件" />
+					<img src="images/image.gif" title="图片" />
+					<img src="images/swf.gif" title="flash" />
+					<img src="images/movie.gif" title="影片" />
+					<img src="images/space.gif" />
+					<img src="images/left.gif" title="左区域" />
+					<img src="images/center.gif" title="中区域" />
+					<img src="images/right.gif" title="右区域" />
+					<img src="images/space.gif" />
+					<img src="images/increase.gif" title="扩大输入区" />
+					<img src="images/decrease.gif" title="缩小输入区" />
+					<img src="images/help.gif" />
+			</div>
+		</dd>
+		<dd><textarea name="content" rows="9" ></textarea></dd>
 		<dd>验 证  码：<input type="text" name="rcode" class="text rcode" /><img src="rcode.php" id="rcodeimg"></dd>
 		<dd><input type="submit" value="发表" class="submit" />
 			<input type="button" value="返回" class="submit" onclick="javascript:location.href='./index.php'" /></dd>

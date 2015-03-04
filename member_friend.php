@@ -15,7 +15,7 @@ if ($_GET['action'] == 'check' && isset($_GET['id'])) {
 			location_href('好友验证成功', "member_friend.php");
 		}else{
 			_close();
-			alert_back('验证失败，请重试');
+			location_href('已通过验证！', "member_friend.php");
 		}
 }
 //批量删除好友

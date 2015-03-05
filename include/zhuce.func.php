@@ -136,7 +136,4 @@ function ck_modify_pwd($string, $min) {
 }
 
 
-
-
-
 ?>

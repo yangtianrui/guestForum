@@ -50,7 +50,6 @@ function rcode($width=70, $height=20, $num=4) {
 function ck_code($sta_code, $end_code) {
 	if ($sta_code != $end_code){
 		alert_back('验证码错误！');
-		exit();
 	}
 }
 
@@ -343,5 +342,34 @@ function get_xml($xmlfile) {
 
 
 
+
+//post文章发布页的表单验证
+
+/**
+ * 文章标题的验证
+ * @param  [type] $min [description]
+ * @param  [type] $max [description]
+ * @param  [type] $string [description]
+ * @return [type]      [description]
+ */
+function ck_post_title($min, $max, $string) {
+	if (mb_strlen($string)<$min || mb_strlen($string)>$max){
+		alert_back('标题长度不能大于'.$max.'小于'.$min);
+	}
+	return $string;
+}
+
+/**
+ * 文章内容的验证
+ * @param  [type] $string [description]
+ * @param  [type] $min    [description]
+ * @return [type]         [description]
+ */
+function ck_post_content($string, $min) {
+	if (mb_strlen($string)<$min){
+		alert_back('内容长度不能小于'.$min);
+	}
+	return $string;
+}
 
 ?>

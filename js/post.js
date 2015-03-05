@@ -3,6 +3,21 @@ window.onload = function() {
     var $ubb = document.getElementById('ubb');
     var $ubb_img = $ubb.getElementsByTagName('img');
     var $fm = document.getElementsByTagName('form')[0];
+    var $html = document.getElementsByTagName('html')[0];
+    var $font = document.getElementById('font');
+    var $color = document.getElementById('color');
+    $html.onmouseup = function() {
+        $font.style.display = 'none';
+        $color.style.display = 'none'; 
+    }
+    $ubb_img[0].onclick = function() {
+        if ($font.style.display == 'none') {
+            $font.style.display = 'block';
+        }else{
+            $font.style.display = 'none'
+        }
+        
+    }
     $ubb_img[2].onclick = function() {
         in_content('[b][/b]');
     }
@@ -14,6 +29,10 @@ window.onload = function() {
     }
     $ubb_img[5].onclick = function() {
         in_content('[s][/s]');
+    }
+    $ubb_img[7].onclick = function() {
+       $color.style.display = 'block';
+       $fm.t.focus();//让文本框自动获取光标
     }
     //弹出对话框获取用户URL
     $ubb_img[8].onclick = function() {
@@ -59,6 +78,10 @@ window.onload = function() {
             $fm.content.rows -= 2;
         }
     }
+    //用于监听颜色文本框的点击事件
+    $fm.t.onclick = function() {
+        showcolor(this.value);
+    }
 /**
  * 向文本框中添加指定的字符串,并且累计
  * @param  {[type]} $str [description]
@@ -67,4 +90,20 @@ window.onload = function() {
     function in_content($str) {
         $fm.content.value += $str;
     }
+}
+
+
+/**
+ * 添加字体大小函数
+ * @param  {[type]} $str [description]
+ * @return {[type]}      [description]
+ */
+function font($str) {
+    document.getElementsByTagName('form')[0].content.value += '[size='+$str+'][/size]';
+}
+
+
+
+function showcolor(value) {
+    document.getElementsByTagName('form')[0].content.value += '[color='+value+'][/color]';
 }

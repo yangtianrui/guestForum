@@ -84,7 +84,7 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 				}
 			 ?>
 		</dd>
-		<dd>贴图: 贴图系列1　　　贴图系列2　　　贴图系列3</dd>
+		<dd id="bq">表情: <a href="javascript:;" >贴图系列1</a>　　　<a href="javascript:;" >贴图系列2</a>　　　<a href="javascript:;" >贴图系列3</a></dd>
 		<dd class="img_">
 			<div id="ubb" >
 					<img src="images/fontsize.gif" title="字体大小" alt="字体大小" />

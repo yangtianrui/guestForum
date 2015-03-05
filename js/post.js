@@ -6,9 +6,22 @@ window.onload = function() {
     var $html = document.getElementsByTagName('html')[0];
     var $font = document.getElementById('font');
     var $color = document.getElementById('color');
+    //清除选择字体和颜色页面
     $html.onmouseup = function() {
         $font.style.display = 'none';
         $color.style.display = 'none'; 
+    }
+    //选择表情
+    var $bq = document.getElementById('bq');
+    var $bq_a = $bq.getElementsByTagName('a');
+    $bq_a[0].onclick = function() {
+        centerWindow('bq1.php?num=48&path=qpic/1/', 'bq1', '400', '400');
+    }
+    $bq_a[1].onclick = function() {
+        centerWindow('bq1.php?num=10&path=qpic/2/', 'bq1', '400', '400');
+    }
+    $bq_a[2].onclick = function() {
+        centerWindow('bq1.php?num=39&path=qpic/3/', 'bq1', '400', '400');
     }
     $ubb_img[0].onclick = function() {
         if ($font.style.display == 'none') {

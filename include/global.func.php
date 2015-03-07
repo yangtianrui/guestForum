@@ -372,4 +372,21 @@ function ck_post_content($string, $min) {
 	return $string;
 }
 
+
+function _ubb($str) {
+	$str = nl2br($str);//将回车转换成br
+	$str = preg_replace('/\[b\](.*)\[\/b\]/U', '<strong>\1</strong>', $str);// \1表示匹配第一个括号里的分组
+	$str = preg_replace('/\[i\](.*)\[\/i\]/U', '<em>\1</em>', $str);
+	$str = preg_replace('/\[u\](.*)\[\/u\]/U', '<span style="text-decoration:underline">\1</span>', $str);
+	$str = preg_replace('/\[s\](.*)\[\/s\]/U', '<span style="text-decoration:line-through">\1</span>', $str);
+	$str = preg_replace('/\[color=(.*)\](.*)\[\/color\]/U', '<span style="color:\1">\2</span>', $str);
+	$str = preg_replace('/\[size=(.*)\](.*)\[\/size\]/U', '<span style="font-size:\1px">\2</span>', $str);
+	$str = preg_replace('/\[url\](.*)\[\/url\]/U', '<a href="\1" target="_blank"></a>', $str);
+	$str = preg_replace('/\[email\](.*)\[\/email\]/U', '<a href="mailto:\1""></a>', $str);
+	$str = preg_replace('/\[img\](.*)\[\/img\]/U', '<img src="\1" >', $str);	
+	$str = preg_replace('/\[flash\](.*)\[\/flash\]/U', '<embed src="\1" style="width: 400px; height: 400px;" >', $str);	
+	return $str;
+}
+
+
 ?>

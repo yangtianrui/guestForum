@@ -5,6 +5,8 @@ define(SCRIPT, 'article');
 require  dirname(__FILE__).'/include/common.inc.php';
 if (isset($_GET['id'])) {
 	if(!!$row = _fetch_query("SELECT id,username,type,title,content,readcount,commendcount,date FROM g_article WHERE id='{$_GET['id']}'")){
+		//阅读数+1
+		_query("UPDATE g_article SET readcount=readcount+1 WHERE id='{$_GET['id']}'");
 	}else{
 		alert_back('不存在文章！');
 	}
@@ -48,11 +50,11 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 		</dl>
 		<div id="content">
 			<div class="user">
-				<span>1#</span>文章来自 ：| <?php echo $row['username']; ?> 发布于 <?php echo $row['date']; ?>
+				<span class="nav">1#</span>文章来自 ：| <?php echo $row['username']; ?> 发布于 <?php echo $row['date']; ?>
 			</div>
 			<h3>主题： <?php echo $row['title']; ?><img src="images/icon<?php echo $row['type']; ?>.gif" alt=""></h3>
 			<div class="detail">
-				<?php echo $row['content']; ?>
+				<?php echo _ubb($row['content']); ?>
 			</div>
 			<div id="read">
 				阅读数：（<?php echo $row['readcount']; ?>）

@@ -2,7 +2,12 @@
 header("Content-Type:text/html;charset=utf-8");
 define(IN_CF, true);
 define(SCRIPT, 'article');
+session_start();
 require  dirname(__FILE__).'/include/common.inc.php';
+if($_GET['action'] == 'rearticle') {
+	echo 'ok';
+	exit();
+}
 if (isset($_GET['id'])) {
 	if(!!$row = _fetch_query("SELECT id,username,type,title,content,readcount,commendcount,date FROM g_article WHERE id='{$_GET['id']}'")){
 		//阅读数+1
@@ -30,6 +35,7 @@ if (isset($_GET['id'])) {
 require ROOT_PATH.'include/title.inc.php';
 ?>
 <script type="text/javascript" src="js/blog.js"></script>
+<script type="text/javascript" src="js/rcode.js"></script>
 </head>
 <body>
 <?php 
@@ -63,6 +69,18 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 		</div>
 	</div>
 	<p class="line"></p>
+	<?php if(isset($_COOKIE['username'])) {?>
+	<form  action="?action=rearticle" method="post">
+		<ul>
+			<li>发表评论</li>
+			<li>标题：<input type="text" name="title" class="text" value="<?php echo 'RE:'.$row['title'].''; ?>" placeholder="* 必填2~20位" /></li>
+			<li><textarea name="comment" id="" cols="25" rows="10"></textarea></li>
+			<li>验 证  码：<input type="text" name="rcode" class="text rcode" /><img src="rcode.php" id="rcodeimg"></li>
+			<li><input type="submit" value="发表" class="submit" />
+				<input type="button" value="返回" class="submit" onclick="javascript:location.href='./index.php'" /></li>
+		</ul>
+	</form>
+	<?php } ?>
 </div>
 
 <?php 

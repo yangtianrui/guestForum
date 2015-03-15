@@ -1,4 +1,5 @@
 window.onload = function() {
+	rcode();
 	var $msg = document.getElementsByName('message');
 	var $fri = document.getElementsByName('friend');
 	var $pra = document.getElementsByName('praise');

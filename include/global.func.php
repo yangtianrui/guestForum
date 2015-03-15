@@ -184,7 +184,7 @@ function page_sta($size, $sql) {
 	if (isset($_GET['page'])){
 		$pagenow = $_GET['page'];
 		//如果page参数不存在，或者不合法，使初始页面的参数为1
-		if (empty($_GET['page']) || $_GET['page'] < 0 || !is_numeric($_GET['page'])){
+		if (empty($_GET['page']) || $_GET['page'] <= 0 || !is_numeric($_GET['page'])){
 			$pagenow = 1;
 		}else{
 			$pagenow = intval($_GET['page']);//对浮点数取整
@@ -277,9 +277,9 @@ function ck_content($string) {
  * @return string
  */
 
-function fix_content($str) {
-	if (mb_strlen($str, 'utf-8')>16){
-		$str = mb_substr($str, 1, 16, 'utf-8').'...';
+function fix_content($str, $strlen=16) {
+	if (mb_strlen($str, 'utf-8')>$strlen){
+		$str = mb_substr($str, 0, $strlen, 'utf-8').'...';
 	}
 	return $str;
 }

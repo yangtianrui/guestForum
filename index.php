@@ -12,6 +12,11 @@ define(SCRIPT, index);//这个常量用来证明本页
 require  dirname(__FILE__).'/include/common.inc.php';
 require ROOT_PATH.'include/title.inc.php';
 $_html = html_spc(get_xml('new.xml'));//获取xml文件
+//获取帖子列表 
+global $pagenum, $pagesize;
+page_sta(10, 'SELECT id FROM g_article');
+$result = mysql_query("SELECT id,username,type,title,content,readcount,commendcount FROM g_article ORDER by date DESC LIMIT $pagenum,$pagesize");
+
 ?>
 <body>
 <?php 
@@ -25,11 +30,13 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 	<h2>帖子列表</h2>
 	<a href="post.php" title="帖子列表" class="post">发表帖子</a>
 	<ul class="article">
-		<li class="icon1"><em>阅读数（）评论数（）</em><a href="#">帖子列表帖子列表帖子列表帖子列表帖子列表</a></li>
-		<li class="icon2"><em>阅读数（）评论数（）</em><a href="#">帖子列表帖子列表帖子列表帖子列表帖子列表</a></li>
-		<li class="icon3"><em>阅读数（）评论数（）</em><a href="#">帖子列表帖子列表帖子列表帖子列表帖子列表</a></li>
-		<li class="icon6"><em>阅读数（）评论数（）</em><a href="#">帖子列表帖子列表帖子列表帖子列表帖子列表</a></li>
+		<?php while(!!$_row = _fetch_list($result)){ 
+			echo '<li class="icon'.$_row['type'].'"><em>阅读数（'.$_row['readcount'].'）评论数（'.fix_content($_row['commendcount']).'）</em><a href="article.php?id='.$_row['id'].'">'.$_row['title'].'</a></li>';
+ 		}
+ 		mysql_free_result($result);
+ 		?>
 	</ul>
+	<?php paging(); ?>
 </div>
 <div id="user">
 	<h2>新进会员</h2>

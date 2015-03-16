@@ -15,7 +15,7 @@ $_html = html_spc(get_xml('new.xml'));//获取xml文件
 //获取帖子列表 
 global $pagenum, $pagesize;
 page_sta(10, 'SELECT id FROM g_article');
-$result = mysql_query("SELECT id,username,type,title,content,readcount,commendcount FROM g_article ORDER by date DESC LIMIT $pagenum,$pagesize");
+$result = mysql_query("SELECT id,username,type,title,content,readcount,commendcount FROM g_article WHERE reid=0 ORDER by date DESC LIMIT $pagenum,$pagesize");
 
 ?>
 <body>

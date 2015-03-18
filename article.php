@@ -35,6 +35,10 @@ if (isset($_GET['id'])) {
 	if(!!$row = _fetch_query("SELECT id,reid,username,type,title,content,readcount,commendcount,date FROM g_article WHERE reid=0 AND id='{$_GET['id']}'")){
 		//阅读数+1
 		_query("UPDATE g_article SET readcount=readcount+1 WHERE id='{$_GET['id']}'");
+		//读取回帖
+		global $pagenum, $pagesize;
+		page_sta(20, "SELECT id FROM g_article WHERE reid='{$_clean['reid']}'");
+		$result = _query("SELECT username,title,content,date,type FROM g_article WHERE reid='{$_clean['reid']}'");
 	}else{
 		alert_back('不存在文章！');
 	}
@@ -92,6 +96,18 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 		</div>
 	</div>
 	<p class="line"></p>
+	<?php 
+		while(!!$_row = _fetch_list($result)){ 
+			$re_html['username'] = $_row['username'];
+			$re_html['title'] = $_row['title'];
+			$re_html['content'] = $_row['content'];
+			$re_html['type'] = $_row['type'];
+			$re_html['date'] = $_row['date'];
+			if (!!$row_user = _fetch_query("SELECT g_id,g_username,g_face,g_email FROM g_user WHERE g_username='{$re_html['username']}' LIMIT 1")){
+				$row_user = html_spc($row_user);
+			}
+
+	 ?>
 		<div class="re"><!--回贴部分-->
 		<dl>
 			<dd class="user"><?php echo $row_user['g_username']; ?></dd>
@@ -108,13 +124,16 @@ require ROOT_PATH."include/header.inc.php";//转换硬路径，提高访问速�
 			</div>
 			<h3>主题： <?php echo $row['title']; ?><img src="images/icon<?php echo $row['type']; ?>.gif" alt=""></h3>
 			<div class="detail">
-				回帖 
+				<?php echo _ubb($re_html['content']); ?>
 			</div>
 			<div id="read">
 				阅读数：（<?php echo $row['readcount']; ?>）
 				评论数：（<?php echo $row['commendcount']; ?>）
 			</div>
 		</div>
+		<?php }
+		?>
+		<!--回帖模块-->
 	<?php if(isset($_COOKIE['username'])) {?>
 	<form  action="?action=rearticle" method="post">
 		<ul>

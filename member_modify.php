@@ -1,4 +1,7 @@
 <?php 
+session_start();
+ ?>
+<?php 
 header("Content-Type:text/html;charset=utf-8");
 define(IN_CF, true);
 define(SCRIPT, 'member_modify');

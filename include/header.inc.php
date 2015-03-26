@@ -20,8 +20,10 @@
 	?>
 	<li><a href="blog.php">会员</a></li>
 	<li>风格 </li>
-	<li>管理</li>
 	<?php 
+		if (isset($_COOKIE['username']) && isset($_SESSION['admin'])) {
+			echo '<li><a href="admin.php" title="后台管理">管理</a></li>　';
+		}
 		if (isset($_COOKIE['username'])){
 			echo '<li><a href="logout.php">退出</a></li>';
 		}

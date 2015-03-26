@@ -1,3 +1,6 @@
+<?php 
+session_start();
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +10,7 @@
 </head>
 
 <?php 
+
 define(IN_CF, true);//定义 一个常量，防止非法调用
 define(SCRIPT, index);//这个常量用来证明本页
 require  dirname(__FILE__).'/include/common.inc.php';

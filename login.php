@@ -15,16 +15,17 @@ if ($_GET['action'] == 'login.php'){
 	$_clean['password'] = ck_passwd_login($_POST['password']);
 	$_clean['time'] = ck_time_login($_POST['time']);
 	//到数据库进行验证
-	if (!!$_row = _fetch_query("SELECT g_username, g_uniqid FROM g_user WHERE g_username='{$_clean['username']}' and g_password='{$_clean['password']}' and g_active=''")){
+	if (!!$_row = _fetch_query("SELECT g_username, g_uniqid, g_level FROM g_user WHERE g_username='{$_clean['username']}' and g_password='{$_clean['password']}' and g_active=''")){
 		//记录登录次数
 		_query("UPDATE g_user SET g_last=NOW(),g_ip='{$_SERVER['REMOTE_ADDR']}',g_login=g_login+1 WHERE g_username='{$_row['g_username']}'");
 		_close();
-		session_destroy();//清除session
+		if($_row['g_level'] == 1) {
+			$_SESSION['admin'] = $_row['g_username'];//添加管理员session
+		}
 		set_cookies($_row['g_username'], $_row['g_uniqid'], $_clean['time']);
 		header("Location: member.php");
 	}else{
 		_close();
-		session_destroy();//清除session
 		location_href('帐号密码错误或用户名未激活！', 'login.php');
 	}
 }

@@ -1,4 +1,7 @@
 <?php 
+session_start();
+ ?>
+<?php 
 define(IN_CF, true);
 define(SCRIPT, member_praise);
 header("Content-Type:text/html;charset=utf-8;");
